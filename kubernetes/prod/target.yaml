@@ -15,12 +15,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cdongcp-app
+  name: scdongcp-app
 spec:
+  replicas: 3
   template:
     spec:
       containers:
-        - name: cdongcp-app
+        - name: scdongcp-app
           env:
             - name: TARGET
-              value: dev
+              value: prod

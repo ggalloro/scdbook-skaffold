@@ -12,16 +12,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: scdongcp-app
+  labels:
+    app: scdongcp-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8081
+  selector:
+    app: scdongcp-app
+  type: LoadBalancer
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cdongcp-app
+  name: scdongcp-app
+  labels:
+    app: scdongcp-app
 spec:
-  replicas: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scdongcp-app
   template:
+    metadata:
+      labels:
+        app: scdongcp-app
     spec:
       containers:
-        - name: cdongcp-app
-          env:
-            - name: TARGET
-              value: prod
+      - name: scdongcp-app
+        image: scdongcp-app
+        ports:
+        - containerPort: 8081
