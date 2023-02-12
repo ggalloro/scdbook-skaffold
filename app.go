@@ -26,7 +26,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Printf("scd-on-gcp app server ready, runnning in target: %s", os.Getenv("TARGET"))
+	log.Printf("scd-on-gcp app server ready, running in target: %s", os.Getenv("TARGET"))
 	http.HandleFunc("/", handler)
 	http.ListenAndServe(":8081", nil)
 }
