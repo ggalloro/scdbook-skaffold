@@ -51,3 +51,4 @@ spec:
         image: scdongcp-app
         ports:
         - containerPort: 8081
+          name: http
